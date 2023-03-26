@@ -1,12 +1,13 @@
 package com.example.pr13
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pr13.databinding.ActivityAnswerListBinding
+
 
 class AnswerList : AppCompatActivity() {
     private lateinit var binding: ActivityAnswerListBinding
@@ -28,11 +29,14 @@ class AnswerList : AppCompatActivity() {
         finish()
     }
     private fun CreateRadioButtons(){
-        for (i in intent.getStringArrayExtra("answers")!!.indices.shuffled()) {
+        for (i in intent.getStringArrayExtra("answers")!!.take(10).indices.shuffled()) {
             val rb = RadioButton(this)
             rb.text = intent.getStringArrayExtra("answers")!![i].substringAfterLast("+")
             rb.id = View.generateViewId()
             binding.Group.addView(rb)
+        }
+        if (!intent.getStringArrayExtra("answers")!!.take(10).contains(intent.getStringExtra("correctAnswer"))){
+            (binding.Group.getChildAt((0..9).random()) as RadioButton).text = intent.getStringExtra("correctAnswer")
         }
     }
 }

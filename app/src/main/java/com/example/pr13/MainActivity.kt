@@ -25,7 +25,12 @@ class MainActivity : AppCompatActivity() {
             "Белые горошки на зелёной ножке.+Ландыш",
             "По реке плывет бревно. Ох, и злющее оно!+Крокодил",
             "Всех я вовремя бужу, хоть часов не завожу.+Дятел",
-            "Упадет — поскачет, ударишь — не плачет.+Мяч"
+            "Упадет — поскачет, ударишь — не плачет.+Мяч",
+            "Без рук, без топорёнка построена избенка.+Гнездо",
+            "Синий мундир, белая подкладка, в середине — сладко.+Слива",
+            "Накормишь — живёт, напоишь — умрёт.+Огонь",
+            "Тебе дано, а люди им пользуются.+Имя",
+            "Бел, а не сахар, нет ног, а идет.+Снег",
         ).shuffled()
     private var wins = 0
     private var loses = 0
@@ -54,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     fun OpenAnswerList(view: View){
         val intent = Intent(this, AnswerList::class.java)
         intent.putExtra("answers", zagadki.toTypedArray())
+        intent.putExtra("correctAnswer", zagadki[binding.txtCount.text.split('/')[0].toInt()])
         launcher?.launch(intent)
     }
     fun Statistic(view: View){
