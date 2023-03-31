@@ -29,13 +29,15 @@ class AnswerList : AppCompatActivity() {
         finish()
     }
     private fun CreateRadioButtons(){
-        for (i in intent.getStringArrayExtra("answers")!!.take(10).indices.shuffled()) {
+        var mass = arrayOf<String>()
+        for (i in intent.getStringArrayExtra("answers")!!.indices.shuffled().take(10)) {
             val rb = RadioButton(this)
             rb.text = intent.getStringArrayExtra("answers")!![i].substringAfterLast("+")
             rb.id = View.generateViewId()
             binding.Group.addView(rb)
+            mass += intent.getStringArrayExtra("answers")!![i].substringAfterLast("+")
         }
-        if (!intent.getStringArrayExtra("answers")!!.take(10).contains(intent.getStringExtra("correctAnswer"))){
+        if (!mass.contains(intent.getStringExtra("correctAnswer"))){
             (binding.Group.getChildAt((0..9).random()) as RadioButton).text = intent.getStringExtra("correctAnswer")
         }
     }

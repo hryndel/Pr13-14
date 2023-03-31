@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     fun OpenAnswerList(view: View){
         val intent = Intent(this, AnswerList::class.java)
         intent.putExtra("answers", zagadki.toTypedArray())
-        intent.putExtra("correctAnswer", zagadki[binding.txtCount.text.split('/')[0].toInt()])
+        intent.putExtra("correctAnswer", zagadki[binding.txtCount.text.split('/')[0].toInt() - 1].substringAfterLast("+"))
         launcher?.launch(intent)
     }
     fun Statistic(view: View){
